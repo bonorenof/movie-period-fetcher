@@ -147,16 +147,18 @@ def main():
         client = TmdbDiscoverClient(selected_config, global_params, options_date=opts)
         discovered = __filtering(client.discover_movies())
 
+        print(f"Fetched {len(discovered)} movies")
+
         # Prepare datas to display
         date_format = '%d %B'
         json_rendered = {'header': f"Movies released between {date_from.strftime(date_format)} "
                                    f"and {date_to.strftime(date_format)} since {since_year}",
-                         'content' : discovered[:int(global_params.render_limit)]}
+                         'content' : discovered}
 
         # Render it to a nice HTML page
         html_file = html_renderer.render_html_page(json_rendered,
                                                    os.path.join(os.path.dirname(__file__), 'resources', 'templates'),
-                                                   'template.html.jinja',
+                                                   'template_lazy.html.jinja',
                                                    os.path.join(os.path.dirname(__file__), 'dist'))
 
         # Open user browser with generated page

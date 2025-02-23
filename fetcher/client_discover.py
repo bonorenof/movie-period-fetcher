@@ -86,7 +86,7 @@ class TmdbDiscoverClient:
         for result in json_resp['results']:
             new_json = {'id': result['id'], 'title': result['title'],
                         'link': f'https://www.themoviedb.org/movie/{result['id']}?language={language}',
-                        'poster': f'https://image.tmdb.org/t/p/w500/{result['poster_path']}',
+                        'poster': f'https://image.tmdb.org/t/p/w200/{result['poster_path']}',
                         'original_language': result['original_language'], 'release_date': result['release_date'],
                         'vote_average': result['vote_average'], 'popularity': result['popularity']}
             new_jsons_lst.append(new_json)

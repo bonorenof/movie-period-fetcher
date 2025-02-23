@@ -9,7 +9,8 @@ def render_html_page(json_rendered, template_path, template_filename, output_dir
     template = env.get_template(template_filename)
 
     # Render the template with the data
-    html_output = template.render(header=json_rendered['header'], movies=json_rendered['content'])
+    html_output = template.render(header=json_rendered['header'], movies=json_rendered['content'],
+                                  initial_count=50, batch_size=30)
 
     # Ensure the output directory exists
     os.makedirs(output_dir, exist_ok=True)
