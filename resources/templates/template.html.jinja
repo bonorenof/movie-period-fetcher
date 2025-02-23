@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Film Fetcher</title>
+    <title>Movie Period Fetcher</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,11 +60,11 @@
 <body>
 <h1>{{ header }}</h1>
 <ul>
-    {% for film in films %}
+    {% for movie in movies %}
     <li>
-        <a href="{{ film.link }}" target="_blank">
-            <img src="{{ film.poster }}" alt="{{ film.title }} poster">
-            <h2>{{ film.title }}</h2>
+        <a href="{{ movie.link }}" target="_blank">
+            <img src="{{ movie.poster }}" alt="{{ movie.title }} poster">
+            <h2>{{ movie.title }}</h2>
         </a>
     </li>
     {% endfor %}

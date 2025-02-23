@@ -36,7 +36,7 @@ class TmdbDiscoverClient:
 
         jsons_lst = []
         for year in range(self.opts.since_year, self.opts.to_year + 1):
-            print(f"\rFetching films of year {year}...", end='', flush=True)
+            print(f"\rFetching movies of year {year}...", end='', flush=True)
             jsons_lst.append({'year': year, 'content': self.__discover_movies_single_year(params, year, headers=headers)})
         print('\n')
         return jsons_lst

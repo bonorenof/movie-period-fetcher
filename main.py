@@ -89,10 +89,10 @@ def __get_date_input(prompt, allow_none=False):
 
 
 def __get_dates_of_year():
-    day1, month1 = __get_date_input("Please enter the starting day for fetching films 'dd-mm' format: ")
+    day1, month1 = __get_date_input("Please enter the starting day for fetching movies 'dd-mm' format: ")
 
     while True:
-        day2, month2 = __get_date_input("Now enter the last day for fetching films 'dd-mm'"
+        day2, month2 = __get_date_input("Now enter the last day for fetching movies 'dd-mm'"
                                       " format (or nothing if same day as first input): ", True)
         if day2 is None and month2 is None:
             day2 = day1
@@ -156,7 +156,7 @@ def main():
         # Render it to a nice HTML page
         html_file = html_renderer.render_html_page(json_rendered,
                                                    os.path.join(os.path.dirname(__file__), 'resources', 'templates'),
-                                                   'template.html',
+                                                   'template.html.jinja',
                                                    os.path.join(os.path.dirname(__file__), 'dist'))
 
         # Open user browser with generated page
