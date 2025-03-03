@@ -13,7 +13,6 @@ def get_section_values(config, section, fail_if_none=False):
     params = {}
     try:
         params.update(config.items(section))
-        return params
     except NoSectionError as e:
         if fail_if_none:
             raise e

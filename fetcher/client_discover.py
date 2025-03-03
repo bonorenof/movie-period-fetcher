@@ -3,6 +3,7 @@ from datetime import datetime, MINYEAR
 import backoff
 import requests
 from ratelimit import limits, sleep_and_retry
+from requests import HTTPError
 
 from fetcher import ini_parser
 
@@ -76,7 +77,7 @@ class TmdbDiscoverClient:
         if resp.status_code == 429:
             raise ValueError(f"request failed, rate limited: {resp.status_code}")
         elif resp.status_code != 200:
-            raise Exception(f"request failed unexpectedly: {resp.status_code} : {resp.text}")
+            raise HTTPError(f"request failed unexpectedly: {resp.status_code} : {resp.text}")
         else:
             return resp
 
@@ -85,8 +86,8 @@ class TmdbDiscoverClient:
         new_jsons_lst = []
         for result in json_resp['results']:
             new_json = {'id': result['id'], 'title': result['title'],
-                        'link': f'https://www.themoviedb.org/movie/{result['id']}?language={language}',
-                        'poster': f'https://image.tmdb.org/t/p/w200/{result['poster_path']}',
+                        'link': f'https://www.themoviedb.org/movie/{result["id"]}?language={language}',
+                        'poster': f'https://image.tmdb.org/t/p/w200/{result["poster_path"]}',
                         'original_language': result['original_language'], 'release_date': result['release_date'],
                         'vote_average': result['vote_average'], 'popularity': result['popularity']}
             new_jsons_lst.append(new_json)
